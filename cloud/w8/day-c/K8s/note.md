@@ -324,42 +324,8 @@ kubectl delete pod <pod-name>
 
 ---
 
-# 9. Reflection
-
-## Tôi đã hiểu:
-
-* Kubernetes networking cơ bản
-* Scaling manual và auto
-* Service types
-* Debug workflow
 
 ## Vấn đề gặp phải:
 
 * ...
 
-## Câu hỏi cho mentor:
-
-1. Khi nào dùng HPA vs VPA?
-2. NodePort có dùng production không?
-3. CNI plugin ảnh hưởng networking thế nào?
-4. Khi nào cần Ingress thay vì Service?
-
----
-
-# 10. Evidence (bắt buộc)
-
-* minikube start screenshot
-* kubectl get pods
-* kubectl get svc
-* scaling demo
-* service access browser screenshot
-
----
-
-# Commit
-
-```bash id="commit"
-git add .
-git commit -m "[W8-D3] Kubernetes scaling & networking"
-git push origin main
-```
