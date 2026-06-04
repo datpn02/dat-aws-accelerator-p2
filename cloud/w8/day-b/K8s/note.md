@@ -1,4 +1,4 @@
-# W8 - Day B: Kubernetes Foundation
+# W8 - Day B: Kubernetes Container/Orchestration
 
 > Date: 02/06/2026
 
