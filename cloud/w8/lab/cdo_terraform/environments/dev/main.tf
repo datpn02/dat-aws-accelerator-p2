@@ -9,11 +9,11 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "tf-final-project-state-2025" # tên bucket từ bước 0
+    bucket         = "tf-final-project-state-2025" 
     key            = "environments/dev/terraform.tfstate"
     region         = "ap-southeast-1"
     encrypt        = true
-    dynamodb_table = "terraform-state-lock" //use_lockfile = true new in terraform 1.5.0, không cần dynamodb nữa
+    dynamodb_table = "terraform-state-lock" //use_lockfile = true new in terraform 1.5.0, không cần dynamodb 
   }
 }
 
