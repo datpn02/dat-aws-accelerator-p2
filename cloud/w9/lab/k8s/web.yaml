@@ -1,0 +1,47 @@
+kind: ConfigMap
+apiVersion: v1
+metadata: 
+  name: web-config
+  namespace: demo
+  annotations: 
+    argocd.argoproj.io/sync-wave: "0"
+data: 
+  MESSAGE: "hello from gitops"
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata: 
+  name: web
+  namespace: demo
+  annotations: 
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  replicas: 2
+  selector: 
+    matchLabels: 
+      app: web
+  template:
+    metadata: 
+      labels: 
+        app: web
+    spec: 
+      containers: 
+      - name: web
+        image: nginx:1.27
+        envFrom: 
+        - configMapRef: 
+            name: web-config
+---
+kind: Service
+apiVersion: v1
+metadata: 
+  name: web
+  namespace: demo
+  annotations: 
+    argocd.argoproj.io/sync-wave: "2"
+spec: 
+  selector: 
+    app: web
+  ports: 
+  - port: 80
+    targetPort: 80

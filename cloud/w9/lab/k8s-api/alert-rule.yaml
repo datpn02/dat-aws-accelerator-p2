@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: api-slo
+  namespace: demo
+  labels:
+    release: kube-prometheus-stack   # label để Prometheus nhận rule
+spec:
+  groups:
+  - name: api.slo
+    rules:
+    - alert: ApiHighErrorRate
+      expr: |
+        (sum(rate(flask_http_request_total{namespace="demo",status=~"5.."}[5m]))
+         / sum(rate(flask_http_request_total{namespace="demo"}[5m]))) > 0.05
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: "API error rate > 5%"
+        description: "SLO violation: success rate đang dưới 95%"
